@@ -28,19 +28,21 @@ public class ColorsBEController {
 	
 	@RequestMapping(value = "/saveColor", method = RequestMethod.POST,produces={"application/json"})
 	//public ResponseEntity saveColor(@RequestParam(name = "color") String color) throws Exception {
-	public ResponseEntity saveColor(@RequestBody  String color) throws Exception {
+	public ResponseEntity saveColor(@RequestBody  String jsonColor) throws Exception {
 	
+		JSONObject jsonObject=new JSONObject(jsonColor);
+		String colore =(String) jsonObject.get("color");
 		
 		//save the color on DB and return OK
 		System.out.println("ColorsBE Controller.saveColor sto per salvare sul DB");
 		Scelta scelta=new Scelta();
-		scelta.setColore(color);
+		scelta.setColore(colore);
 		sceltaRepository.save(scelta);
 		System.out.println("ColorsBE Controller.saveColor ho salvato sul DB");
 		
 		
 		//String color="fddfsdfssd";
-		System.out.println("Colors BE saving color:"+color);
+		System.out.println("Colors BE saving color:"+colore);
 		
 		JSONObject jsonResp=new JSONObject();
 		return new ResponseEntity("OK",HttpStatus.OK);
