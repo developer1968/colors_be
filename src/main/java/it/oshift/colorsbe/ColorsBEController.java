@@ -22,7 +22,7 @@ public class ColorsBEController {
 	@RequestMapping(value = "/getColor", method = RequestMethod.GET,produces={"application/json"})
 	public ResponseEntity getColor() throws Exception {
 		JSONObject jsonResp=new JSONObject();
-		jsonResp.put("choosed_color", "verde");
+		jsonResp.put("choosed_color", "verde smeraldo");
 		return new ResponseEntity(jsonResp.toString(),HttpStatus.OK);
 	}
 	
@@ -32,9 +32,11 @@ public class ColorsBEController {
 	
 		
 		//save the color on DB and return OK
+		System.out.println("ColorsBE Controller.saveColor sto per salvare sul DB");
 		Scelta scelta=new Scelta();
 		scelta.setColore(color);
 		sceltaRepository.save(scelta);
+		System.out.println("ColorsBE Controller.saveColor ho salvato sul DB");
 		
 		
 		//String color="fddfsdfssd";
